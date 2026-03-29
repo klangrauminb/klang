@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Seite nicht gefunden | Klangraum in Balance"
+  description="Die angeforderte Seite konnte nicht gefunden werden."
+>
+  <Header />
+  
+  <main id="main-content" class="flex-grow flex items-center justify-center py-20">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <h1 class="text-6xl md:text-8xl font-bold text-klang-sage/20 mb-4">404</h1>
+      <h2 class="text-xl md:text-2xl text-klang-green mb-6">Seite nicht gefunden</h2>
+      <p class="text-klang-green/80 mb-8">
+        Die von Ihnen gesuchte Seite existiert leider nicht oder wurde verschoben.
+      </p>
+      <a 
+        href="/"
+        class="inline-flex items-center justify-center px-8 py-4 bg-[#5a6b5c] text-klang-cream font-semibold rounded-lg hover:bg-[#5a6b5c]/90 transition-colors focus:outline-none focus:ring-2 focus:ring-[#5a6b5c]/50"
+        aria-label="Zurück zur Startseite"
+      >
+        Zurück zur Startseite
+      </a>
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>

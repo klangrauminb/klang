@@ -1,0 +1,96 @@
+---
+const currentYear = new Date().getFullYear();
+
+const footerLinks = [
+  { href: '/impressum/', label: 'Impressum', ariaLabel: 'Zum Impressum' },
+  { href: '/datenschutz/', label: 'Datenschutz', ariaLabel: 'Zur Datenschutzerklärung' },
+];
+---
+
+<footer class="bg-[#9dae9f] text-[#e7e8dc] mt-auto">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+      <!-- Brand -->
+      <div class="space-y-4">
+        <a 
+          href="/" 
+          class="hover:opacity-80 transition-opacity inline-block"
+          aria-label="Klangraum in Balance - Zur Startseite"
+        >
+          <img 
+            src="/logo.jpg" 
+            alt="Klangraum in Balance Logo" 
+            class="h-12 md:h-14 w-auto rounded-lg"
+            width="1024"
+            height="1024"
+          />
+        </a>
+        <p class="text-klang-cream/80 text-sm leading-relaxed">
+          Klangmassage in Köln<br />
+          Eva Brandt<br />
+          zertifizierte Peter Hess®<br />
+          Klangmassagepraktikerin
+        </p>
+      </div>
+      
+      <!-- Contact -->
+      <div class="space-y-4">
+        <h3 class="text-lg font-bold">Kontakt</h3>
+        <address class="not-italic text-klang-cream/80 text-sm leading-relaxed space-y-2">
+          <p>Eva Brandt</p>
+          <p>
+            <a 
+              href="tel:+491772522505" 
+              class="hover:text-klang-cream transition-colors underline underline-offset-2"
+              aria-label="Telefonnummer anrufen: 0177-2522505"
+            >
+              0177-2522505
+            </a>
+          </p>
+          <p>
+            <a 
+              href="mailto:kontakt@klangraum-balance.de" 
+              class="hover:text-klang-cream transition-colors underline underline-offset-2"
+              aria-label="E-Mail senden"
+            >
+              kontakt@klangraum-balance.de
+            </a>
+          </p>
+          <p>Sülzburgstraße 215<br />50937 Köln</p>
+        </address>
+      </div>
+      
+      <!-- Links -->
+      <div class="space-y-4">
+        <h3 class="text-lg font-bold">Rechtliches</h3>
+        <nav aria-label="Footer Navigation">
+          <ul class="space-y-2">
+            {footerLinks.map((link) => (
+              <li>
+                <a 
+                  href={link.href}
+                  class="text-klang-cream/80 text-sm hover:text-klang-cream transition-colors underline underline-offset-2"
+                  aria-label={link.ariaLabel}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </div>
+    
+    <!-- Bottom Bar -->
+    <div class="border-t border-klang-cream/20 mt-8 pt-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-klang-cream/60 text-xs">
+          © {currentYear} Klangraum in Balance. Alle Rechte vorbehalten.
+        </p>
+        <p class="text-klang-cream/60 text-xs">
+          Mit Liebe und Achtsamkeit gestaltet
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

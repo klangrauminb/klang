@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Über mich | Klangraum in Balance"
+  description="Lerne Eva Brandt kennen – zertifizierte Peter Hess® Klangmassagepraktikerin aus Köln."
+>
+  <Header />
+  
+  <main id="main-content">
+    <!-- Page Header -->
+    <section class="pt-16 md:pt-24 pb-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-xl md:text-2xl text-klang-green">
+          Über mich
+        </h1>
+      </div>
+    </section>
+    
+    <!-- About Section -->
+    <section 
+      class="py-12 md:py-20"
+      aria-labelledby="about-heading"
+    >
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <!-- Image - mit Abstand nach unten versetzt, bündig mit Text-Paragraph -->
+          <div class="order-1 lg:order-1 lg:mt-[4.5rem]">
+            <div class="relative rounded-2xl overflow-hidden shadow-xl">
+              <img 
+                src="/übermich.jpeg" 
+                alt="Eva Brandt mit Klangschale am Wasser" 
+                class="w-full h-auto object-cover"
+                width="1149"
+                height="1471"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          
+          <!-- Text Content -->
+          <div class="order-2 lg:order-2">
+            <h2 
+              id="about-heading"
+              class="text-lg md:text-xl text-klang-green"
+            >
+              Mein Weg zur Klangmassage
+            </h2>
+            <div class="prose prose-lg max-w-none">
+              <p class="text-klang-green/90 text-lg md:text-xl leading-relaxed">
+                Ich bin zweifache Mutter und habe viele Jahre als Fernsehredakteurin und Autorin in einem stressintensiven Arbeitsfeld gearbeitet. Somit kenne ich den Wunsch nach tiefer Entspannung nur zu gut und weiß, wie wichtig Pausen im Alltag sind. Auf der Suche nach einem Ausgleich und innerer Balance habe ich mich intensiv mit dem Thema Achtsamkeit beschäftigt und unter anderem Reiki (Grad 1 und 2) erlernt. Meine erste Klangmassage vor einigen Jahren hat mich schließlich auf eine besondere Weise tief berührt, so dass der Wunsch entstand, diese Erfahrung weiterzugeben. Daraufhin habe ich mich im Peter Hess® Institut zur zertifizierten Peter Hess® Klangmassagepraktikerin ausbilden lassen. Seitdem begleitet mich der Klang der Schalen auch im Alltag und erinnert mich immer wieder daran, wie heilsam Momente der Ruhe und des Innehaltens sein können. Wenn auch du dir eine achtsame Auszeit wünschst und die heilsame Wirkung von Klang und Schwingung erleben möchtest, melde dich gern bei mir.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section 
+      class="py-16 md:py-24 bg-[#5a6b5c] text-klang-cream"
+      aria-labelledby="cta-heading"
+    >
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-xl md:text-2xl text-klang-cream/90 mb-8 max-w-2xl mx-auto">
+          Finde zurück in die Ruhe und lass den Alltag für einen Moment los.
+        </p>
+        <a 
+          href="/kontakt/"
+          class="inline-flex items-center justify-center px-8 py-4 bg-klang-cream text-[#5a6b5c] font-semibold rounded-lg hover:bg-klang-cream/90 transition-colors focus:outline-none focus:ring-2 focus:ring-klang-cream/50"
+          aria-label="Jetzt Kontakt aufnehmen"
+        >
+          Jetzt Kontakt aufnehmen
+        </a>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>

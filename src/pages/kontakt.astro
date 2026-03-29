@@ -1,0 +1,262 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Kontakt | Klangraum in Balance"
+  description="Nimm Kontakt mit Eva Brandt auf. Vereinbare deinen Termin für eine Klangmassage in Köln."
+>
+  <Header />
+  
+  <main id="main-content">
+    <!-- Contact Section -->
+    <section 
+      class="py-12 md:py-20"
+      aria-label="Kontaktformular"
+    >
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          <!-- Contact Form -->
+          <div>
+            <p class="text-lg text-klang-green/80 mb-6">
+              Ich freue mich auf deine Nachricht.
+            </p>
+            <form 
+              action="https://api.web3forms.com/submit" 
+              method="POST"
+              class="space-y-6"
+              aria-label="Kontaktformular"
+            >
+              <!-- Web3Forms Access Key -->
+              <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" />
+              
+              <!-- Subject -->
+              <input type="hidden" name="subject" value="Neue Nachricht von Klangraum in Balance" />
+              
+              <!-- Honeypot Spam Protection -->
+              <div class="hidden" aria-hidden="true">
+                <input type="checkbox" name="botcheck" id="botcheck" tabindex="-1" autocomplete="off" />
+                <label for="botcheck">Nicht ausfüllen</label>
+              </div>
+              
+              <!-- From Name (Sender Name) -->
+              <input type="hidden" name="from_name" value="Klangraum in Balance Website" />
+              
+              <!-- Name Field -->
+              <div>
+                <label for="name" class="block text-sm font-medium text-klang-green mb-2">
+                  Name <span class="text-klang-green/60">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  required
+                  class="w-full px-4 py-3 rounded-lg border border-klang-sage/20 bg-white focus:outline-none focus:ring-2 focus:ring-klang-sage/50 focus:border-transparent transition-colors"
+                  placeholder="Dein Name"
+                  aria-required="true"
+                />
+              </div>
+              
+              <!-- Email Field -->
+              <div>
+                <label for="email" class="block text-sm font-medium text-klang-green mb-2">
+                  E-Mail <span class="text-klang-green/60">*</span>
+                </label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email" 
+                  required
+                  class="w-full px-4 py-3 rounded-lg border border-klang-sage/20 bg-white focus:outline-none focus:ring-2 focus:ring-klang-sage/50 focus:border-transparent transition-colors"
+                  placeholder="deine@email.de"
+                  aria-required="true"
+                />
+              </div>
+              
+              <!-- Message Field -->
+              <div>
+                <label for="message" class="block text-sm font-medium text-klang-green mb-2">
+                  Nachricht <span class="text-klang-green/60">*</span>
+                </label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  rows="5" 
+                  required
+                  class="w-full px-4 py-3 rounded-lg border border-klang-sage/20 bg-white focus:outline-none focus:ring-2 focus:ring-klang-sage/50 focus:border-transparent transition-colors resize-y"
+                  placeholder="Deine Nachricht..."
+                  aria-required="true"
+                ></textarea>
+              </div>
+              
+              <!-- Submit Button -->
+              <button 
+                type="submit"
+                class="w-full px-8 py-4 bg-klang-sage text-klang-cream font-semibold rounded-lg hover:bg-klang-sage/90 transition-colors focus:outline-none focus:ring-2 focus:ring-klang-sage/50"
+                aria-label="Nachricht absenden"
+              >
+                Nachricht absenden
+              </button>
+            </form>
+            
+            <!-- Form Status Messages -->
+            <div id="form-status" class="mt-6 p-4 rounded-lg hidden" role="alert" aria-live="polite">
+              <p id="form-status-message" class="font-medium"></p>
+            </div>
+            
+            <script is:inline>
+              (function() {
+                const form = document.querySelector('form[action*="web3forms"]');
+                const statusDiv = document.getElementById('form-status');
+                const statusText = document.getElementById('form-status-message');
+                
+                if (form) {
+                  form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'Wird gesendet...';
+                    submitBtn.disabled = true;
+                    
+                    try {
+                      const formData = new FormData(form);
+                      const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData
+                      });
+                      
+                      const data = await response.json();
+                      
+                      if (response.ok && data.success) {
+                        statusDiv.className = 'mt-6 p-4 rounded-lg bg-green-100 text-green-800 border border-green-200';
+                        statusText.textContent = 'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Ich melde mich bald bei Ihnen.';
+                        form.reset();
+                      } else {
+                        throw new Error(data.message || 'Submission failed');
+                      }
+                    } catch (error) {
+                      statusDiv.className = 'mt-6 p-4 rounded-lg bg-red-100 text-red-800 border border-red-200';
+                      statusText.textContent = 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie mich direkt per Telefon.';
+                    } finally {
+                      submitBtn.textContent = originalText;
+                      submitBtn.disabled = false;
+                      statusDiv.classList.remove('hidden');
+                      statusDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                  });
+                }
+              })();
+            </script>
+          </div>
+          
+          <!-- Contact Info -->
+          <div>
+            <h2 class="text-lg md:text-xl text-klang-green">
+              Direkter Kontakt
+            </h2>
+            
+            <div class="space-y-6">
+              <!-- Name -->
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-klang-sage/10 flex items-center justify-center">
+                  <svg class="w-5 h-5 text-klang-sage" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-klang-green">Name</p>
+                  <p class="text-klang-green/80">Eva Brandt</p>
+                </div>
+              </div>
+              
+              <!-- Phone -->
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-klang-sage/10 flex items-center justify-center">
+                  <svg class="w-5 h-5 text-klang-sage" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-klang-green">Telefon</p>
+                  <a 
+                    href="tel:+491772522505"
+                    class="text-klang-green/80 hover:text-klang-green transition-colors underline underline-offset-2"
+                    aria-label="Telefonnummer anrufen: 0177-2522505"
+                  >
+                    0177-2522505
+                  </a>
+                </div>
+              </div>
+              
+              <!-- WhatsApp Button -->
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center">
+                  <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-klang-green">WhatsApp</p>
+                  <a 
+                    href="https://wa.me/491772522505"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center space-x-2 text-green-600 hover:text-green-700 transition-colors underline underline-offset-2"
+                    aria-label="Über WhatsApp kontaktieren"
+                  >
+                    <span>Über WhatsApp schreiben</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Email -->
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-klang-sage/10 flex items-center justify-center">
+                  <svg class="w-5 h-5 text-klang-sage" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-klang-green">E-Mail</p>
+                  <a 
+                    href="mailto:kontakt@klangraum-balance.de"
+                    class="text-klang-green/80 hover:text-klang-green transition-colors underline underline-offset-2"
+                    aria-label="E-Mail senden"
+                  >
+                    kontakt@klangraum-balance.de
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Address -->
+              <div class="flex items-start space-x-4">
+                <div class="flex-shrink-0 w-10 h-10 rounded-full bg-klang-sage/10 flex items-center justify-center">
+                  <svg class="w-5 h-5 text-klang-sage" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-semibold text-klang-green">Adresse</p>
+                  <address class="not-italic text-klang-green/80">
+                    Sülzburgstraße 215<br />
+                    50937 Köln<br />
+                    <span class="text-sm">(bitte bei Querwaldein e.V. klingeln)</span>
+                  </address>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>

@@ -1,0 +1,147 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Behandlung & Kosten | Klangraum in Balance"
+  description="Erfahre mehr über die Klangmassage nach Peter Hess®, wie sie wirkt, wie sie abläuft und was sie kostet."
+>
+  <Header />
+  
+  <main id="main-content">
+    <!-- Page Header -->
+    <section class="pt-16 md:pt-24 pb-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-xl md:text-2xl text-klang-green">
+          Behandlung & Kosten
+        </h1>
+      </div>
+    </section>
+    
+    <!-- Section 1: Wie die Klangmassage wirkt -->
+    <section 
+      class="py-12 md:py-20"
+      aria-labelledby="how-it-works-heading"
+    >
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          <!-- Text -->
+          <div class="order-2 lg:order-1">
+            <h2 
+              id="how-it-works-heading"
+              class="text-lg md:text-xl text-klang-green"
+            >
+              Wie die Klangmassage wirkt
+            </h2>
+            <div class="prose prose-lg max-w-none">
+              <p class="text-klang-green/90 text-lg md:text-xl leading-relaxed">
+                Während die sanften Klänge der Klangschalen über das Gehör wahrgenommen werden und sich beruhigend auf unser Nervensystem auswirken, breiten sich feine Schwingungen im Körper aus – vergleichbar mit konzentrischen Wellen, die entstehen, wenn ein Stein in einen See fällt. Dieser Vergleich liegt nahe, da unser Körper zu etwa 70-80 % aus Wasser besteht. Ähnlich wie sich die Wellen im See ausbreiten, werden auch die Vibrationen der Klangschalen über das Wasser im Körper weitergetragen. Diese Schwingungen durchdringen den Körper auf tiefen Ebenen, sprechen ihn ganzheitlich an und können ihn dabei unterstützen, in einen Zustand tiefer Entspannung und natürlicher Selbstregulation zu gelangen.
+              </p>
+            </div>
+          </div>
+          <!-- Image -->
+          <div class="order-1 lg:order-2">
+            <div class="relative rounded-2xl overflow-hidden shadow-lg">
+              <img 
+                src="/wiesiewirkt.jpeg" 
+                alt="Wellen im Wasser - wie Schwingungen der Klangschalen im Körper" 
+                class="w-full h-auto object-cover aspect-video"
+                width="917"
+                height="620"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Section 2: So läuft die Klangmassage ab -->
+    <section 
+      class="py-12 md:py-20 bg-white/50"
+      aria-labelledby="procedure-heading"
+    >
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <!-- Image -->
+          <div class="order-1 lg:order-1">
+            <div class="relative rounded-2xl overflow-hidden shadow-xl">
+              <img 
+                src="/ablauf.jpg" 
+                alt="Klangmassage Behandlung mit Klangschalen" 
+                class="w-full h-auto object-cover"
+                width="1264"
+                height="848"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          
+          <!-- Text -->
+          <div class="order-2 lg:order-2">
+            <h2 
+              id="procedure-heading"
+              class="text-lg md:text-xl text-klang-green"
+            >
+              So läuft die Klangmassage ab
+            </h2>
+            <div class="prose prose-lg max-w-none">
+              <p class="text-klang-green/90 text-lg md:text-xl leading-relaxed">
+                Nach einem kurzen Vorgespräch genießt du eine Behandlung in Bauch- und in Rückenlage. In beiden Lagen werden eine oder mehrere speziell angefertigte Klangschalen auf deinem bekleideten Körper und in seiner Nähe platziert und sanft angeschlägelt. Du wirst dabei nicht angefasst. Sollte sich eine der Körperlagen für dich nicht angenehm anfühlen oder nicht möglich sein, steht einer wohltuenden Klangmassage dennoch nichts im Wege. Die Anwendung kann auch in nur einer Position durchgeführt werden, ganz individuell auf deine Bedürfnisse abgestimmt.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Section 3: Behandlungsdauer & Kosten -->
+    <section 
+      class="py-12 md:py-20"
+      aria-labelledby="pricing-heading"
+    >
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 
+          id="pricing-heading"
+          class="text-lg md:text-xl text-klang-green text-center"
+        >
+          Behandlungsdauer & Kosten
+        </h2>
+        <div class="prose prose-lg max-w-none">
+          <p class="text-klang-green/90 text-lg md:text-xl leading-relaxed">
+            Eine Klangmassage dauert etwa 60 Minuten, inklusive eines kurzen Vor- und Nachgesprächs. Der Ausgleich für diese Zeit der Entspannung und Regeneration beträgt 65 Euro.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section 
+      class="py-16 md:py-24 bg-[#5a6b5c] text-klang-cream"
+      aria-labelledby="cta-heading"
+    >
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 
+          id="cta-heading"
+          class="text-lg md:text-xl mb-6"
+        >
+          Hast du Fragen?
+        </h2>
+        <p class="text-xl md:text-2xl text-klang-cream/90 mb-8 max-w-2xl mx-auto">
+          Ich berate dich gerne persönlich und freue mich auf deine Nachricht.
+        </p>
+        <a 
+          href="/kontakt/"
+          class="inline-flex items-center justify-center px-8 py-4 bg-klang-cream text-[#5a6b5c] font-semibold rounded-lg hover:bg-klang-cream/90 transition-colors focus:outline-none focus:ring-2 focus:ring-klang-cream/50"
+          aria-label="Kontakt aufnehmen"
+        >
+          Kontakt aufnehmen
+        </a>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>

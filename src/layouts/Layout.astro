@@ -1,0 +1,231 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { 
+  title, 
+  description = "Klangraum in Balance - Klangmassage in Köln. Zur Ruhe kommen, loslassen, auftanken mit Eva Brandt, zertifizierte Peter Hess® Klangmassagepraktikerin." 
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#5a6b5c" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href={canonicalURL} />
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Klangraum in Balance" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:locale" content="de_DE" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://klangraum-in-balance.de/kraftderklangmassage.jpeg" />
+  
+  <!-- Open Graph Image -->
+  <meta property="og:image" content="https://klangraum-in-balance.de/kraftderklangmassage.jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Drei goldene Klangschalen vor blauem Wasser - Klangraum in Balance" />
+  
+  <!-- Local Fonts - Mulish (GDPR compliant, no external requests) -->
+  <link rel="preload" href="/fonts/mulish-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/mulish-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="apple-mobile-web-app-title" content="Klangraum" />
+  
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Klangraum in Balance",
+    "description": "Klangmassage in Köln mit Eva Brandt, zertifizierte Peter Hess® Klangmassagepraktikerin",
+    "url": "https://klangraum-in-balance.de",
+    "telephone": "+491772522505",
+    "email": "kontakt@klangraum-balance.de",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Sülzburgstraße 215",
+      "addressLocality": "Köln",
+      "postalCode": "50937",
+      "addressCountry": "DE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "50.9375",
+      "longitude": "6.9603"
+    },
+    "priceRange": "€€",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    },
+    "sameAs": []
+  }
+  </script>
+  
+  <title>{title}</title>
+  
+  <style is:global>
+    /* Global Typography - Mulish (Local Fonts) */
+    @font-face {
+      font-family: 'Mulish';
+      src: url('/fonts/mulish-latin-400-normal.woff2') format('woff2'),
+           url('/fonts/mulish-latin-400-normal.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Mulish';
+      src: url('/fonts/mulish-latin-700-normal.woff2') format('woff2'),
+           url('/fonts/mulish-latin-700-normal.woff') format('woff');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    html, body {
+      overflow-x: hidden;
+    }
+    body {
+      font-family: 'Mulish', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    /* Headings - ALL CAPS, elegant */
+    h1, h2, h3, h4, h5, h6 {
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+    
+    /* Section headings with underline */
+    h2 {
+      padding-bottom: 12px;
+      border-bottom: 1px solid currentColor;
+      margin-bottom: 24px;
+      display: inline-block;
+    }
+    
+    /* Body text - airy, justified */
+    p, li {
+      font-weight: 400;
+      line-height: 1.8;
+    }
+    
+    p {
+      text-align: justify;
+      hyphens: auto;
+    }
+    
+    /* Prevent CLS - maintain aspect ratio for images */
+    img {
+      height: auto;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-klang-green focus:text-klang-cream focus:rounded-lg">
+    Zum Hauptinhalt springen
+  </a>
+  <body class="bg-klang-cream text-klang-green font-sans antialiased min-h-screen flex flex-col">
+  <slot />
+  
+  <!-- Cookie Banner -->
+  <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-klang-sage text-klang-cream p-4 md:p-6 transform translate-y-full transition-transform duration-300 ease-in-out z-50 shadow-2xl" role="dialog" aria-label="Cookie-Einwilligung" aria-live="polite">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-sm md:text-base">
+        <p class="font-semibold mb-1">Datenschutzeinstellungen</p>
+        <p class="text-klang-cream/90">Wir verwenden ausschließlich essenzielle Cookies für die Funktionalität dieser Website. Keine Tracking-Tools, keine Werbung.</p>
+      </div>
+      <div class="flex flex-wrap gap-2 md:gap-3 shrink-0">
+        <button 
+          type="button"
+          id="cookie-essential"
+          class="px-4 py-2 text-sm border border-klang-cream/50 rounded hover:bg-klang-cream/10 transition-colors focus:outline-none focus:ring-2 focus:ring-klang-cream/50"
+          aria-label="Nur essenzielle Cookies akzeptieren"
+        >
+          Nur Essentiell
+        </button>
+        <button 
+          type="button"
+          id="cookie-decline"
+          class="px-4 py-2 text-sm border border-klang-cream/50 rounded hover:bg-klang-cream/10 transition-colors focus:outline-none focus:ring-2 focus:ring-klang-cream/50"
+          aria-label="Cookies ablehnen"
+        >
+          Ablehnen
+        </button>
+        <button 
+          type="button"
+          id="cookie-accept"
+          class="px-4 py-2 text-sm bg-klang-cream text-klang-sage font-semibold rounded hover:bg-klang-cream/90 transition-colors focus:outline-none focus:ring-2 focus:ring-klang-cream/50"
+          aria-label="Alle Cookies akzeptieren"
+        >
+          Zustimmen
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    // Fonts are loaded locally - no external requests needed (GDPR compliant)
+    
+    // Cookie Banner Logic
+    (function() {
+      const banner = document.getElementById('cookie-banner');
+      const acceptBtn = document.getElementById('cookie-accept');
+      const declineBtn = document.getElementById('cookie-decline');
+      const essentialBtn = document.getElementById('cookie-essential');
+      
+      // Check if user already made a choice
+      const consent = localStorage.getItem('cookie-consent');
+      
+      if (!consent) {
+        // Show banner after a short delay
+        setTimeout(() => {
+          banner.classList.remove('translate-y-full');
+        }, 1000);
+      }
+      
+      function hideBanner() {
+        banner.classList.add('translate-y-full');
+      }
+      
+      function setConsent(value) {
+        localStorage.setItem('cookie-consent', value);
+        localStorage.setItem('cookie-consent-date', new Date().toISOString());
+        hideBanner();
+      }
+      
+      acceptBtn?.addEventListener('click', () => setConsent('all'));
+      declineBtn?.addEventListener('click', () => setConsent('none'));
+      essentialBtn?.addEventListener('click', () => setConsent('essential'));
+    })();
+  </script>
+</body>
+</html>

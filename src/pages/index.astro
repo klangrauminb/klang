@@ -1,0 +1,151 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const benefits = [
+  'Stress und Erschöpfung',
+  'innerer Unruhe und kreisenden Gedanken',
+  'Schlafproblemen',
+  'körperlichen und emotionalen Spannungen',
+  'mangelnder Körperwahrnehmung',
+  'dem Bedürfnis, wieder mehr bei sich selbst anzukommen.',
+];
+---
+
+<Layout 
+  title="Klangraum in Balance | Klangmassage in Köln"
+  description="Zur Ruhe kommen, loslassen, auftanken. Klangmassage in Köln mit Eva Brandt, zertifizierter Peter Hess® Klangmassagepraktikerin."
+>
+  <Header />
+  
+  <main id="main-content">
+    <!-- Hero Section - Fullscreen GIF only -->
+    <section 
+      class="w-full h-screen"
+      aria-label="Hero"
+    >
+      <img 
+        src="/hero.gif" 
+        alt="Sonnenuntergang am Strand mit sanften Wellen" 
+        class="w-full h-full object-cover"
+        width="1920"
+        height="1080"
+        fetchpriority="high"
+      />
+    </section>
+    
+    <!-- Slogan Section -->
+    <section 
+      class="py-12 md:py-16 bg-[#9dae9f]"
+      aria-labelledby="slogan-heading"
+    >
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 
+          id="slogan-heading"
+          class="text-xl md:text-2xl lg:text-3xl text-[#e7e8dc]"
+        >
+          Zur Ruhe kommen. Loslassen. Auftanken.
+        </h1>
+      </div>
+    </section>
+    
+    <!-- Section 2: Die Kraft der Klangmassage -->
+    <section 
+      class="py-16 md:py-24 bg-white/50"
+      aria-labelledby="power-heading"
+    >
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          <!-- Image - bündig mit Text -->
+          <div class="order-1 lg:order-1 lg:mt-[4.5rem]">
+            <div class="relative rounded-2xl overflow-hidden shadow-xl">
+              <img 
+                src="/kraftderklangmassage.jpeg" 
+                alt="Drei goldene Klangschalen vor blauem Wasser" 
+                class="w-full h-auto object-cover"
+                width="1920"
+                height="1280"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <!-- Text -->
+          <div class="order-2 lg:order-2">
+            <h2 
+              id="power-heading"
+              class="text-lg md:text-xl text-klang-green"
+            >
+              Die Kraft der Klangmassage
+            </h2>
+            <p class="text-klang-green/90 text-lg md:text-xl leading-relaxed">
+              Wenn der Kopf nicht mehr zur Ruhe kommt und der Alltag zu viel wird, braucht es einen Moment zum Innehalten, um wieder bei sich selbst anzukommen. Die Klangmassage schafft einen geschützten Raum zum Entspannen, Abschalten und Durchatmen - so kann Stress abgebaut, die innere Balance gestärkt und das allgemeine Wohlbefinden gesteigert werden. Die Klangmassage ist eine sanfte Methode, um das Nervensystem zu beruhigen (Aktivierung des parasympathischen Nervensystems) und die körpereigene Regeneration anzuregen. Innere Ausgeglichenheit und Ruhe können sich entfalten, so dass ein Raum für tiefe Entspannung entsteht. Dabei ist es möglich, dass sich körperliche und mentale Blockaden lösen. Zugleich unterstützt die Klangmassage eine feinere Körperwahrnehmung und stärkt das Gefühl von innerer Harmonie. Die Klangmassage ist für Menschen jeden Alters geeignet.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Section 3: Besonders wohltuend bei -->
+    <section 
+      class="py-16 md:py-24"
+      aria-labelledby="benefits-heading"
+    >
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 
+          id="benefits-heading"
+          class="text-lg md:text-xl text-klang-green text-center"
+        >
+          Besonders wohltuend bei:
+        </h2>
+        <ul 
+          class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"
+          role="list"
+        >
+          {benefits.map((benefit, index) => (
+            <li class="flex items-start space-x-3">
+              <span class="flex-shrink-0 w-6 h-6 rounded-full bg-klang-sage/10 flex items-center justify-center mt-0.5">
+                <svg 
+                  class="w-4 h-4 text-klang-sage" 
+                  fill="currentColor" 
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                >
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+              </span>
+              <span class="text-klang-green/90 text-lg">{benefit}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section 
+      class="py-16 md:py-24 bg-[#5a6b5c] text-klang-cream"
+      aria-labelledby="cta-heading"
+    >
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 
+          id="cta-heading"
+          class="text-lg md:text-xl mb-6"
+        >
+          Sehnst du dich nach einem Moment der Ruhe und Entspannung?
+        </h2>
+        <p class="text-xl md:text-2xl text-klang-cream/90 mb-8 max-w-2xl mx-auto">
+          Schenke dir selbst eine Auszeit und erlebe die heilsame Wirkung der Klangmassage oder überrasche einen lieben Menschen mit einem Gutschein.
+        </p>
+        <a 
+          href="/kontakt/"
+          class="inline-flex items-center justify-center px-8 py-4 bg-klang-cream text-[#5a6b5c] font-semibold rounded-lg hover:bg-klang-cream/90 transition-colors focus:outline-none focus:ring-2 focus:ring-klang-cream/50"
+          aria-label="Jetzt Termin vereinbaren"
+        >
+          Jetzt Termin vereinbaren
+        </a>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>
