@@ -15,7 +15,7 @@ The site is built with modern web technologies, focusing on performance, accessi
 | Framework | [Astro](https://astro.build) | ^4.5.0 |
 | Styling | [Tailwind CSS](https://tailwindcss.com) | ^3.4.1 |
 | Integration | @astrojs/tailwind | ^5.1.0 |
-| Font | [Mulish](https://fonts.google.com/specimen/Mulish) (Google Fonts) | 400, 700 |
+| Font | [Mulish](https://github.com/fontsource/font-files/tree/main/fonts/google/mulish) (Self-hosted via @fontsource) | ^5.2.8 |
 | Form Service | [Web3Forms](https://web3forms.com/) | - |
 | Deployment | [Netlify](https://netlify.com) | - |
 | Runtime | Node.js | 20 |
@@ -24,7 +24,7 @@ The site is built with modern web technologies, focusing on performance, accessi
 
 - **Astro**: Chosen for its excellent static site generation, minimal JavaScript output, and built-in performance optimizations
 - **Tailwind CSS**: Utility-first CSS framework for rapid, consistent styling
-- **Mulish**: Modern, friendly sans-serif font that aligns with the wellness brand aesthetic
+- **Mulish (Self-hosted)**: Modern, friendly sans-serif font. Self-hosted fonts ensure GDPR compliance with zero external requests
 - **Web3Forms**: Simple, serverless form handling without backend complexity
 - **Netlify**: Static hosting with built-in CDN, atomic deploys, and edge functions support
 
@@ -37,12 +37,12 @@ The site is built with modern web technologies, focusing on performance, accessi
 ├── dist/                   # Build output (auto-generated, git-ignored)
 ├── node_modules/           # Dependencies (git-ignored)
 ├── public/                 # Static assets (copied as-is to dist)
-│   ├── images/             # Image assets directory (currently empty)
+│   ├── fonts/              # Self-hosted Mulish font files (WOFF2, WOFF)
 │   ├── ablauf.jpg          # Treatment procedure image
 │   ├── hero.gif            # Hero section animation (sunset beach)
 │   ├── kraftderklangmassage.jpeg  # Sound bowl image
 │   ├── logo.jpg            # Brand logo
-│   ├── ocean-waves.gif     # Ocean waves animation
+│   ├── ocean-waves.gif     # Ocean waves animation (currently unused)
 │   ├── robots.txt          # SEO robots configuration
 │   ├── sitemap.xml         # XML sitemap for search engines
 │   ├── übermich.jpeg       # About page photo
@@ -93,7 +93,7 @@ npm run preview
 ### Development Server
 
 - **Local URL**: http://localhost:4321
-- **Netlify Dev URL**: http://localhost:8888 (when using Netlify CLI)
+- **Netlify Dev URL**: http://localhost:8888 (when using Netlify CLI with `netlify dev`)
 
 ---
 
@@ -105,13 +105,15 @@ npm run preview
 |------|-----|-------|
 | `klang-cream` | `#f9f7eb` | Primary background, light surfaces |
 | `klang-green` | `#1f4c34` | Primary text, brand color, buttons |
+| `klang-sage` | `#6b7d6d` | Cookie banner background |
 | Header/Footer BG | `#9dae9f` | Header and footer background |
 | Header Text | `#e7e8dc` | Header and footer text color |
+| CTA Section BG | `#5a6b5c` | Call-to-action section background |
 
 ### Typography
 
-- **Primary Font**: Mulish (loaded from Google Fonts via GDPR-compliant loader)
-- **Weights**: 400 (regular), 700 (bold)
+- **Primary Font**: Mulish (self-hosted from @fontsource, loaded via `@font-face`)
+- **Weights Used**: 400 (regular), 700 (bold)
 - **Global Styles** (defined in `Layout.astro`):
   - All headings (`h1`-`h6`): UPPERCASE, font-weight 700, letter-spacing 0.08em
   - `h2` elements: Bottom border (1px), padding-bottom 12px, inline-block display
@@ -166,6 +168,7 @@ All components must include:
 - **Alt Text**: All images must have descriptive `alt` attributes
 - **Section Headers**: Each `<section>` should have an `aria-labelledby` pointing to its heading
 - **Color Contrast**: Maintain WCAG AA contrast ratios (verified via Tailwind defaults)
+- **Skip Link**: Layout includes a skip-to-content link for keyboard users
 
 ### Tailwind Class Ordering
 
@@ -190,17 +193,17 @@ Located in `Layout.astro`. Features:
 - Stores consent choice in `localStorage` (key: `cookie-consent`)
 - Three options: "Zustimmen" (All), "Nur Essentiell", "Ablehnen"
 - Auto-hides after user choice with animation
-- Font loading from Google Fonts is GDPR-compliant (only loads after consent)
+- All fonts are self-hosted - no external requests needed (GDPR compliant by default)
 - No third-party tracking (privacy-first approach)
 
 ### 2. Contact Form
 
 Located in `kontakt.astro`. Uses [Web3Forms](https://web3forms.com/):
 - Form endpoint: `https://api.web3forms.com/submit`
-- Requires access key configuration (currently `YOUR_WEB3FORMS_KEY`)
+- Requires access key configuration (currently `YOUR_WEB3FORMS_KEY` - **must be updated before deployment**)
 - Includes honeypot spam protection (`botcheck` field)
 - Form fields: Name, Email, Message
-- Success/error handling managed by Web3Forms
+- Success/error handling managed via inline JavaScript
 - WhatsApp contact link provided as alternative
 
 ### 3. Mobile Navigation
@@ -218,9 +221,8 @@ Every page includes (managed via `Layout.astro`):
 - Canonical URL
 - Open Graph tags (og:title, og:description, og:url, og:locale, og:image)
 - Twitter Card tags
-- Theme color for mobile browsers (#1f4c34)
+- Theme color for mobile browsers (#5a6b5c)
 - Schema.org structured data (LocalBusiness JSON-LD)
-- Favicon variants (SVG, PNG 32x32, Apple touch icon)
 
 ---
 
@@ -252,6 +254,7 @@ Every page includes (managed via `Layout.astro`):
       colors: {
         'klang-cream': '#f9f7eb',
         'klang-green': '#1f4c34',
+        'klang-sage': '#6b7d6d',
       },
       fontFamily: {
         'sans': ['Mulish', 'system-ui', 'sans-serif'],
@@ -272,7 +275,10 @@ Every page includes (managed via `Layout.astro`):
   - X-XSS-Protection: 1; mode=block
   - Referrer-Policy: strict-origin-when-cross-origin
   - Permissions-Policy: camera=(), microphone=(), geolocation=()
+  - Content-Security-Policy (CSP): Restrictive policy with explicit allowlist
+  - Strict-Transport-Security (HSTS): max-age=31536000; includeSubDomains; preload
 - **Caching**: Long-term caching for assets, fonts, and images (1 year)
+- **HTTPS Redirect**: Automatic HTTP to HTTPS redirect
 
 ---
 
@@ -306,7 +312,7 @@ This project follows a **manual testing approach** appropriate for a static mark
 - [ ] Navigation works on desktop and mobile
 - [ ] Mobile menu toggles correctly
 - [ ] Cookie banner shows/hides properly
-- [ ] Contact form submits correctly
+- [ ] Contact form submits correctly (requires valid Web3Forms key)
 - [ ] All images load
 - [ ] No console errors
 - [ ] Lighthouse score > 90 (Performance, Accessibility, Best Practices, SEO)
@@ -331,16 +337,19 @@ This project follows a **manual testing approach** appropriate for a static mark
    - `X-XSS-Protection: 1; mode=block` - XSS filter
    - `Referrer-Policy: strict-origin-when-cross-origin`
    - `Permissions-Policy` - Restricts camera, microphone, geolocation
+   - `Content-Security-Policy` - Comprehensive CSP restricting resources
+   - `Strict-Transport-Security` - HSTS with preload
 
 2. **Form Protection**:
    - Honeypot field (`botcheck`) to prevent spam
    - No sensitive data in client-side code
 
 3. **GDPR Compliance**:
+   - Self-hosted fonts (no Google Fonts external requests)
    - Cookie consent banner
-   - Google Fonts only loaded after consent
    - Local storage for consent preferences only
    - Privacy policy and legal imprint pages
+   - No third-party tracking scripts
 
 ### Dependencies
 
@@ -367,11 +376,17 @@ The contact form requires a Web3Forms access key. To configure:
 <input type="hidden" name="access_key" value="your-actual-key-here" />
 ```
 
-### Sitemap Updates
+### Sitemap
 
-When adding new pages, update `public/sitemap.xml` with the new URL entries.
+The sitemap is located at `public/sitemap.xml` and includes all current pages:
+- `/` (priority: 1.0)
+- `/behandlung-kosten/` (priority: 0.8)
+- `/ueber-mich/` (priority: 0.8)
+- `/kontakt/` (priority: 0.9)
+- `/impressum/` (priority: 0.3)
+- `/datenschutz/` (priority: 0.3)
 
-**Note**: The sitemap currently contains outdated URLs (`/leistungen/` and `/ueber-uns/`) that should be updated to `/behandlung-kosten/` and `/ueber-mich/` respectively.
+When adding new pages, update the sitemap with the new URL entries.
 
 ---
 
@@ -453,6 +468,7 @@ npm run build
 - [Netlify Documentation](https://docs.netlify.com)
 - [Web3Forms Documentation](https://web3forms.com/docs)
 - [Mulish Font](https://fonts.google.com/specimen/Mulish)
+- [Fontsource Mulish](https://fontsource.org/fonts/mulish)
 
 ---
 

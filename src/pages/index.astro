@@ -20,9 +20,9 @@ const benefits = [
   <Header />
   
   <main id="main-content">
-    <!-- Hero Section - Fullscreen GIF only -->
+    <!-- Hero Section - Reduced height to show content teaser -->
     <section 
-      class="w-full h-screen"
+      class="relative w-full h-[70vh]"
       aria-label="Hero"
     >
       <img 
@@ -33,17 +33,40 @@ const benefits = [
         height="1080"
         fetchpriority="high"
       />
+      
+      <!-- Scroll Indicator - Bottom Centered -->
+      <a 
+        href="#power-heading"
+        class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white hover:text-white/90 transition-colors cursor-pointer group"
+        aria-label="Zur Klangmassage Erklärung scrollen"
+      >
+        <span class="text-xs md:text-sm font-normal tracking-wide drop-shadow-lg bg-black/20 px-3 py-1.5 rounded-full backdrop-blur-sm whitespace-nowrap">Die Kraft der Klangmassage</span>
+        <svg 
+          class="w-5 h-5 animate-bounce drop-shadow-lg" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="1.5" 
+            d="M19 14l-7 7m0 0l-7-7m7 7V3" 
+          />
+        </svg>
+      </a>
     </section>
     
-    <!-- Slogan Section -->
+    <!-- Slogan Section - Compact -->
     <section 
-      class="py-12 md:py-16 bg-[#9dae9f]"
+      class="py-6 md:py-8 bg-[#9dae9f]"
       aria-labelledby="slogan-heading"
     >
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 
           id="slogan-heading"
-          class="text-xl md:text-2xl lg:text-3xl text-klang-cream"
+          class="text-xl md:text-2xl lg:text-3xl text-klang-cream font-normal"
         >
           Zur Ruhe kommen. Loslassen. Auftanken.
         </h1>
