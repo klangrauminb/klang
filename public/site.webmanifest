@@ -1,0 +1,11 @@
+{
+  "name": "Klangraum in Balance",
+  "short_name": "Klangraum",
+  "icons": [
+    { "src": "/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "theme_color": "#5a6b5c",
+  "background_color": "#f9f7eb",
+  "display": "standalone"
+}

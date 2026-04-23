@@ -80,7 +80,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     "priceRange": "€€",
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "dayOfWeek": ["Mo", "Di", "Mi", "Do", "Fr"],
       "opens": "09:00",
       "closes": "18:00"
     },
@@ -125,7 +125,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     }
     
     /* Section headings with underline */
-    h2 {
+    .section-heading {
       padding-bottom: 12px;
       border-bottom: 1px solid currentColor;
       margin-bottom: 24px;
@@ -192,12 +192,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     </div>
   </div>
 
+  <div id="cookie-spacer" class="h-0 transition-all duration-300"></div>
+
   <script is:inline>
     // Fonts are loaded locally - no external requests needed (GDPR compliant)
     
     // Cookie Banner Logic
     (function() {
       const banner = document.getElementById('cookie-banner');
+      const spacer = document.getElementById('cookie-spacer');
       const acceptBtn = document.getElementById('cookie-accept');
       const declineBtn = document.getElementById('cookie-decline');
       const essentialBtn = document.getElementById('cookie-essential');
@@ -209,11 +212,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         // Show banner after a short delay
         setTimeout(() => {
           banner.classList.remove('translate-y-full');
+          if (spacer) spacer.classList.add('h-24', 'md:h-20');
         }, 1000);
       }
       
       function hideBanner() {
         banner.classList.add('translate-y-full');
+        if (spacer) spacer.classList.remove('h-24', 'md:h-20');
       }
       
       function setConsent(value) {
