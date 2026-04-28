@@ -1,3 +1,4 @@
+<!-- From: /Users/albinsalihu/Downloads/klang-main/AGENTS.md -->
 # Klangraum in Balance - Project Guide
 
 ## Project Overview
@@ -42,9 +43,11 @@ The site is built with modern web technologies, focusing on performance, accessi
 │   ├── hero.gif            # Hero section animation (sunset beach)
 │   ├── kraftderklangmassage.jpeg  # Sound bowl image
 │   ├── logo.jpg            # Brand logo
+│   ├── logo2.png           # Brand logo (used in header/footer)
 │   ├── ocean-waves.gif     # Ocean waves animation (currently unused)
 │   ├── robots.txt          # SEO robots configuration
 │   ├── sitemap.xml         # XML sitemap for search engines
+│   ├── site.webmanifest    # PWA manifest
 │   ├── übermich.jpeg       # About page photo
 │   └── wiesiewirkt.jpeg    # How it works image
 ├── src/
@@ -55,12 +58,12 @@ The site is built with modern web technologies, focusing on performance, accessi
 │   │   └── Layout.astro    # Main HTML layout with SEO, cookie banner
 │   ├── pages/              # File-based routing (Astro convention)
 │   │   ├── index.astro          # Homepage
-│   │   ├── behandlung-kosten/   # Services/pricing page
-│   │   ├── ueber-mich/          # About page
-│   │   ├── kontakt/             # Contact page with form
-│   │   ├── impressum/           # Legal imprint (German TMG)
-│   │   ├── datenschutz/         # Privacy policy (GDPR)
-│   │   └── 404.astro            # Custom 404 error page
+│   │   ├── behandlung-kosten.astro   # Services/pricing page
+│   │   ├── ueber-mich.astro          # About page
+│   │   ├── kontakt.astro             # Contact page with form
+│   │   ├── impressum.astro           # Legal imprint (German TMG)
+│   │   ├── datenschutz.astro         # Privacy policy (GDPR)
+│   │   └── 404.astro                 # Custom 404 error page
 │   └── env.d.ts            # TypeScript environment types
 ├── astro.config.mjs        # Astro configuration
 ├── tailwind.config.mjs     # Tailwind CSS configuration
@@ -200,7 +203,7 @@ Located in `Layout.astro`. Features:
 
 Located in `kontakt.astro`. Uses [Web3Forms](https://web3forms.com/):
 - Form endpoint: `https://api.web3forms.com/submit`
-- Requires access key configuration (currently `YOUR_WEB3FORMS_KEY` - **must be updated before deployment**)
+- Access key is already configured: `28d3c686-6494-4b94-a317-d02d0dc934e0`
 - Includes honeypot spam protection (`botcheck` field)
 - Form fields: Name, Email, Message
 - Success/error handling managed via inline JavaScript
@@ -272,7 +275,6 @@ Every page includes (managed via `Layout.astro`):
 - **Security Headers**: 
   - X-Frame-Options: DENY
   - X-Content-Type-Options: nosniff
-  - X-XSS-Protection: 1; mode=block
   - Referrer-Policy: strict-origin-when-cross-origin
   - Permissions-Policy: camera=(), microphone=(), geolocation=()
   - Content-Security-Policy (CSP): Restrictive policy with explicit allowlist
@@ -312,7 +314,7 @@ This project follows a **manual testing approach** appropriate for a static mark
 - [ ] Navigation works on desktop and mobile
 - [ ] Mobile menu toggles correctly
 - [ ] Cookie banner shows/hides properly
-- [ ] Contact form submits correctly (requires valid Web3Forms key)
+- [ ] Contact form submits correctly
 - [ ] All images load
 - [ ] No console errors
 - [ ] Lighthouse score > 90 (Performance, Accessibility, Best Practices, SEO)
@@ -334,7 +336,6 @@ This project follows a **manual testing approach** appropriate for a static mark
 1. **Security Headers** (via Netlify):
    - `X-Frame-Options: DENY` - Prevents clickjacking
    - `X-Content-Type-Options: nosniff` - Prevents MIME sniffing
-   - `X-XSS-Protection: 1; mode=block` - XSS filter
    - `Referrer-Policy: strict-origin-when-cross-origin`
    - `Permissions-Policy` - Restricts camera, microphone, geolocation
    - `Content-Security-Policy` - Comprehensive CSP restricting resources
@@ -366,14 +367,15 @@ npm update         # Update dependencies
 
 ### Contact Form Setup
 
-The contact form requires a Web3Forms access key. To configure:
+The contact form uses Web3Forms with an already configured access key (`28d3c686-6494-4b94-a317-d02d0dc934e0`) in `src/pages/kontakt.astro`.
 
+If you need to change the key:
 1. Sign up at https://web3forms.com/
 2. Get your access key
-3. Replace `YOUR_WEB3FORMS_KEY` in `src/pages/kontakt.astro`:
+3. Replace the value in `src/pages/kontakt.astro`:
 
 ```astro
-<input type="hidden" name="access_key" value="your-actual-key-here" />
+<input type="hidden" name="access_key" value="your-new-key-here" />
 ```
 
 ### Sitemap
@@ -439,7 +441,7 @@ Content is hardcoded in Astro files. Edit the relevant `.astro` file in `src/pag
 
 ```bash
 # Clear caches and reinstall
-rmdir /s /q node_modules dist .astro
+rm -rf node_modules dist .astro
 npm install
 npm run build
 ```
