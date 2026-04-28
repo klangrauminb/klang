@@ -11,21 +11,21 @@ const currentPath = Astro.url.pathname;
 
 <header class="sticky top-0 z-40 bg-[#9dae9f] backdrop-blur-sm border-b border-[#e7e8dc]/20">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-24 md:h-28">
+    <div class="flex items-center justify-between min-h-[5rem] h-auto py-2 sm:py-0 sm:h-24 md:h-28">
       <!-- Logo + Brand Name -->
       <a 
         href="/" 
-        class="flex items-center gap-6 hover:opacity-80 transition-opacity"
+        class="flex items-center gap-2 sm:gap-4 md:gap-6 hover:opacity-80 transition-opacity min-w-0"
         aria-label="Klangraum in Balance - Zur Startseite"
       >
         <img 
           src="/logo2.png" 
           alt="Klangraum in Balance Logo" 
-          class="h-12 md:h-16 w-auto rounded-lg"
+          class="h-10 sm:h-12 md:h-16 w-auto rounded-lg shrink-0"
           width="512"
           height="512"
         />
-        <span class="text-xl md:text-xl lg:text-4xl font-normal text-klang-cream tracking-wide uppercase whitespace-nowrap">
+        <span class="text-xl md:text-xl lg:text-4xl font-normal text-klang-cream tracking-wide uppercase whitespace-normal sm:whitespace-nowrap leading-tight">
           KLANGRAUM IN BALANCE
         </span>
       </a>
