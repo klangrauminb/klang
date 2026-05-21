@@ -1,0 +1,12 @@
+{
+  "page_title": "Kontakt",
+  "intro_text": "Ich freue mich auf deine Nachricht.",
+  "direct_contact_heading": "Direkter Kontakt",
+  "form_name_label": "Name",
+  "form_email_label": "E-Mail",
+  "form_message_label": "Nachricht",
+  "form_submit_button": "Nachricht absenden",
+  "form_success_message": "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Ich melde mich bald bei Ihnen.",
+  "form_error_message": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie mich direkt per Telefon.",
+  "whatsapp_text": "Über WhatsApp schreiben"
+}

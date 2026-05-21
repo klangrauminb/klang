@@ -1,0 +1,177 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Bilder
+media_folder: "public/images"
+public_folder: "/images"
+
+# Editor-Modus
+collections:
+  - name: "site"
+    label: "🌐 Globale Einstellungen"
+    files:
+      - file: "src/data/site.json"
+        label: "Website-Daten"
+        name: "site_data"
+        fields:
+          - { label: "Website-Name", name: "site_name", widget: "string" }
+          - { label: "Meta-Beschreibung (Default)", name: "meta_description", widget: "text" }
+          - { label: "OG Bild", name: "og_image", widget: "image" }
+          - { label: "OG Bild Alt-Text", name: "og_image_alt", widget: "string" }
+          - { label: "Telefon (international, z.B. +49177...)", name: "phone", widget: "string" }
+          - { label: "Telefon (Anzeige)", name: "phone_display", widget: "string" }
+          - { label: "E-Mail", name: "email", widget: "string" }
+          - { label: "Straße", name: "address_street", widget: "string" }
+          - { label: "Stadt & PLZ", name: "address_city", widget: "string" }
+          - { label: "Adress-Hinweis", name: "address_note", widget: "string", required: false }
+          - { label: "Preis (z.B. 69 Euro)", name: "price", widget: "string" }
+          - { label: "Dauer (z.B. etwa 60 Minuten)", name: "duration", widget: "string" }
+          - { label: "Schema Preis-Range (z.B. €€)", name: "schema_price_range", widget: "string" }
+          - { label: "Öffnungszeiten (Tage, z.B. Mo, Di, Mi, Do, Fr)", name: "opening_hours_days", widget: "string" }
+          - { label: "Öffnungszeit (von, z.B. 09:00)", name: "opening_hours_open", widget: "string" }
+          - { label: "Öffnungszeit (bis, z.B. 18:00)", name: "opening_hours_close", widget: "string" }
+          - { label: "Cookie-Banner Titel", name: "cookie_banner_title", widget: "string" }
+          - { label: "Cookie-Banner Text", name: "cookie_banner_text", widget: "text" }
+          - { label: "Cookie-Button: Zustimmen", name: "cookie_button_accept", widget: "string" }
+          - { label: "Cookie-Button: Nur Essentiell", name: "cookie_button_essential", widget: "string" }
+          - { label: "Cookie-Button: Ablehnen", name: "cookie_button_decline", widget: "string" }
+
+  - name: "navigation"
+    label: "🧭 Navigation"
+    files:
+      - file: "src/data/navigation.json"
+        label: "Hauptnavigation"
+        name: "nav"
+        fields:
+          - { label: "Markenname", name: "brand_name", widget: "string" }
+          - { label: "Logo", name: "logo", widget: "image" }
+          - { label: "Logo Alt-Text", name: "logo_alt", widget: "string" }
+          - label: "Navigations-Links"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "URL", name: "href", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "ARIA-Label", name: "ariaLabel", widget: "string" }
+
+  - name: "footer"
+    label: "📋 Footer"
+    files:
+      - file: "src/data/footer.json"
+        label: "Footer-Daten"
+        name: "footer_data"
+        fields:
+          - { label: "Marken-Text (Zeilenumbrüche mit <br />)", name: "brand_text", widget: "text" }
+          - { label: "Kontakt-Überschrift", name: "contact_heading", widget: "string" }
+          - { label: "Rechtliches-Überschrift", name: "legal_heading", widget: "string" }
+          - label: "Footer-Links"
+            name: "footer_links"
+            widget: "list"
+            fields:
+              - { label: "URL", name: "href", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "ARIA-Label", name: "ariaLabel", widget: "string" }
+          - { label: "Copyright-Text ({year} wird ersetzt)", name: "copyright_text", widget: "string" }
+          - { label: "Credits-Text", name: "credits_text", widget: "string" }
+
+  - name: "home"
+    label: "🏠 Startseite"
+    files:
+      - file: "src/data/home.json"
+        label: "Startseite Inhalte"
+        name: "home_content"
+        fields:
+          - { label: "Hero Bild", name: "hero_image", widget: "image" }
+          - { label: "Hero Alt-Text", name: "hero_alt", widget: "string" }
+          - { label: "Scroll-Indikator Text", name: "hero_scroll_text", widget: "string" }
+          - { label: "Slogan", name: "slogan", widget: "string" }
+          - { label: "Klangmassage Bild", name: "power_image", widget: "image" }
+          - { label: "Klangmassage Alt", name: "power_alt", widget: "string" }
+          - { label: "Klangmassage Überschrift", name: "power_heading", widget: "string" }
+          - { label: "Klangmassage Text", name: "power_text", widget: "text" }
+          - label: "Benefits (Liste)"
+            name: "benefits"
+            widget: "list"
+            field: { label: "Benefit", name: "benefit", widget: "string" }
+          - { label: "CTA Überschrift", name: "cta_heading", widget: "string" }
+          - { label: "CTA Text", name: "cta_text", widget: "text" }
+          - { label: "CTA Button", name: "cta_button", widget: "string" }
+
+  - name: "behandlung"
+    label: "💆 Behandlung & Kosten"
+    files:
+      - file: "src/data/behandlung.json"
+        label: "Behandlung Inhalte"
+        name: "behandlung_content"
+        fields:
+          - { label: "Seiten-Titel", name: "page_title", widget: "string" }
+          - { label: "Wirkung Überschrift", name: "how_it_works_heading", widget: "string" }
+          - { label: "Wirkung Text", name: "how_it_works_text", widget: "text" }
+          - { label: "Wirkung Bild", name: "how_it_works_image", widget: "image" }
+          - { label: "Wirkung Bild Alt", name: "how_it_works_image_alt", widget: "string" }
+          - { label: "Ablauf Überschrift", name: "procedure_heading", widget: "string" }
+          - { label: "Ablauf Text", name: "procedure_text", widget: "text" }
+          - { label: "Ablauf Bild", name: "procedure_image", widget: "image" }
+          - { label: "Ablauf Bild Alt", name: "procedure_image_alt", widget: "string" }
+          - { label: "Preise Überschrift", name: "pricing_heading", widget: "string" }
+          - { label: "Preise Text", name: "pricing_text", widget: "text" }
+          - { label: "CTA Überschrift", name: "cta_heading", widget: "string" }
+          - { label: "CTA Text", name: "cta_text", widget: "text" }
+          - { label: "CTA Button", name: "cta_button", widget: "string" }
+
+  - name: "uebermich"
+    label: "👤 Über mich"
+    files:
+      - file: "src/data/ueber-mich.json"
+        label: "Über mich Inhalte"
+        name: "uebermich_content"
+        fields:
+          - { label: "Seiten-Titel", name: "page_title", widget: "string" }
+          - { label: "Überschrift", name: "about_heading", widget: "string" }
+          - { label: "Text", name: "about_text", widget: "text" }
+          - { label: "Bild", name: "about_image", widget: "image" }
+          - { label: "Bild Alt", name: "about_image_alt", widget: "string" }
+          - { label: "CTA Überschrift", name: "cta_heading", widget: "string" }
+          - { label: "CTA Button", name: "cta_button", widget: "string" }
+
+  - name: "kontakt"
+    label: "📧 Kontakt"
+    files:
+      - file: "src/data/kontakt.json"
+        label: "Kontakt Inhalte"
+        name: "kontakt_content"
+        fields:
+          - { label: "Seiten-Titel", name: "page_title", widget: "string" }
+          - { label: "Intro-Text", name: "intro_text", widget: "string" }
+          - { label: "Direkter Kontakt Überschrift", name: "direct_contact_heading", widget: "string" }
+          - { label: "Formular: Name Label", name: "form_name_label", widget: "string" }
+          - { label: "Formular: E-Mail Label", name: "form_email_label", widget: "string" }
+          - { label: "Formular: Nachricht Label", name: "form_message_label", widget: "string" }
+          - { label: "Formular: Absenden Button", name: "form_submit_button", widget: "string" }
+          - { label: "Formular: Erfolgsmeldung", name: "form_success_message", widget: "text" }
+          - { label: "Formular: Fehlermeldung", name: "form_error_message", widget: "text" }
+          - { label: "WhatsApp Text", name: "whatsapp_text", widget: "string" }
+
+  - name: "legal"
+    label: "⚖️ Rechtliche Seiten"
+    folder: "src/content"
+    create: false
+    slug: "{{slug}}"
+    extension: "md"
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Meta-Beschreibung", name: "description", widget: "text" }
+      - { label: "Inhalt", name: "body", widget: "markdown" }
+
+  - name: "error404"
+    label: "❌ 404 Fehlerseite"
+    files:
+      - file: "src/data/404.json"
+        label: "404 Inhalte"
+        name: "error404_content"
+        fields:
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "Untertitel (z.B. 404)", name: "subtitle", widget: "string" }
+          - { label: "Text", name: "text", widget: "text" }
+          - { label: "Button Text", name: "button_text", widget: "string" }

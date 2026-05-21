@@ -2,10 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import kontaktData from '../data/kontakt.json';
+import siteData from '../data/site.json';
 ---
 
 <Layout 
-  title="Kontakt | Klangraum in Balance"
+  title={`${kontaktData.page_title} | Klangraum in Balance`}
   description="Nimm Kontakt mit Eva Brandt auf. Vereinbare deinen Termin für eine Klangmassage in Köln."
 >
   <Header />
@@ -14,7 +16,7 @@ import Footer from '../components/Footer.astro';
     <section class="pt-16 md:pt-24 pb-8">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 class="text-xl md:text-2xl text-klang-green">
-          Kontakt
+          {kontaktData.page_title}
         </h1>
       </div>
     </section>
@@ -29,7 +31,7 @@ import Footer from '../components/Footer.astro';
           <!-- Contact Form -->
           <div>
             <p class="text-lg text-klang-green/80 mb-6">
-              Ich freue mich auf deine Nachricht.
+              {kontaktData.intro_text}
             </p>
             <form 
               action="https://api.web3forms.com/submit" 
@@ -55,7 +57,7 @@ import Footer from '../components/Footer.astro';
               <!-- Name Field -->
               <div>
                 <label for="name" class="block text-sm font-medium text-klang-green mb-2">
-                  Name <span class="text-klang-green/60">*</span>
+                  {kontaktData.form_name_label} <span class="text-klang-green/60">*</span>
                 </label>
                 <input 
                   type="text" 
@@ -72,7 +74,7 @@ import Footer from '../components/Footer.astro';
               <!-- Email Field -->
               <div>
                 <label for="email" class="block text-sm font-medium text-klang-green mb-2">
-                  E-Mail <span class="text-klang-green/60">*</span>
+                  {kontaktData.form_email_label} <span class="text-klang-green/60">*</span>
                 </label>
                 <input 
                   type="email" 
@@ -89,7 +91,7 @@ import Footer from '../components/Footer.astro';
               <!-- Message Field -->
               <div>
                 <label for="message" class="block text-sm font-medium text-klang-green mb-2">
-                  Nachricht <span class="text-klang-green/60">*</span>
+                  {kontaktData.form_message_label} <span class="text-klang-green/60">*</span>
                 </label>
                 <textarea 
                   id="message" 
@@ -106,9 +108,9 @@ import Footer from '../components/Footer.astro';
               <button 
                 type="submit"
                 class="w-full px-8 py-4 bg-klang-green text-klang-cream font-semibold rounded-lg hover:bg-klang-green/90 transition-colors focus:outline-none focus:ring-2 focus:ring-klang-green/50"
-                aria-label="Nachricht absenden"
+                aria-label={kontaktData.form_submit_button}
               >
-                Nachricht absenden
+                {kontaktData.form_submit_button}
               </button>
             </form>
             
@@ -117,7 +119,7 @@ import Footer from '../components/Footer.astro';
               <p id="form-status-message" class="font-medium" role="alert" aria-live="assertive"></p>
             </div>
             
-            <script is:inline>
+            <script is:inline define:vars={{ successMsg: kontaktData.form_success_message, errorMsg: kontaktData.form_error_message }}>
               (function() {
                 const form = document.querySelector('form[action*="web3forms"]');
                 const statusDiv = document.getElementById('form-status');
@@ -142,14 +144,14 @@ import Footer from '../components/Footer.astro';
                       
                       if (response.ok && data.success) {
                         statusDiv.className = 'mt-6 p-4 rounded-lg bg-green-100 text-green-800 border border-green-200';
-                        statusText.textContent = 'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Ich melde mich bald bei Ihnen.';
+                        statusText.textContent = successMsg;
                         form.reset();
                       } else {
                         throw new Error(data.message || 'Submission failed');
                       }
                     } catch (error) {
                       statusDiv.className = 'mt-6 p-4 rounded-lg bg-red-100 text-red-800 border border-red-200';
-                      statusText.textContent = 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie mich direkt per Telefon.';
+                      statusText.textContent = errorMsg;
                     } finally {
                       submitBtn.textContent = originalText;
                       submitBtn.disabled = false;
@@ -165,7 +167,7 @@ import Footer from '../components/Footer.astro';
           <!-- Contact Info -->
           <div>
             <h2 class="text-lg md:text-xl text-klang-green">
-              Direkter Kontakt
+              {kontaktData.direct_contact_heading}
             </h2>
             
             <div class="space-y-6">
@@ -192,11 +194,11 @@ import Footer from '../components/Footer.astro';
                 <div>
                   <p class="font-semibold text-klang-green">Telefon</p>
                   <a 
-                    href="tel:+491772522505"
+                    href={`tel:${siteData.phone}`}
                     class="text-klang-green/80 hover:text-klang-green transition-colors underline underline-offset-2"
-                    aria-label="Telefonnummer anrufen: 0177-2522505"
+                    aria-label={`Telefonnummer anrufen: ${siteData.phone_display}`}
                   >
-                    0177-2522505
+                    {siteData.phone_display}
                   </a>
                 </div>
               </div>
@@ -211,13 +213,13 @@ import Footer from '../components/Footer.astro';
                 <div>
                   <p class="font-semibold text-klang-green">WhatsApp</p>
                   <a 
-                    href="https://wa.me/491772522505"
+                    href={`https://wa.me/${siteData.phone.replace('+', '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     class="inline-flex items-center space-x-2 text-green-600 hover:text-green-700 transition-colors underline underline-offset-2"
                     aria-label="Über WhatsApp kontaktieren"
                   >
-                    <span>Über WhatsApp schreiben</span>
+                    <span>{kontaktData.whatsapp_text}</span>
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
@@ -236,11 +238,11 @@ import Footer from '../components/Footer.astro';
                 <div>
                   <p class="font-semibold text-klang-green">E-Mail</p>
                   <a 
-                    href="mailto:kontakt@klangraum-balance.de"
+                    href={`mailto:${siteData.email}`}
                     class="text-klang-green/80 hover:text-klang-green transition-colors underline underline-offset-2"
                     aria-label="E-Mail senden"
                   >
-                    kontakt@klangraum-balance.de
+                    {siteData.email}
                   </a>
                 </div>
               </div>
@@ -255,9 +257,9 @@ import Footer from '../components/Footer.astro';
                 <div>
                   <p class="font-semibold text-klang-green">Adresse</p>
                   <address class="not-italic text-klang-green/80">
-                    Sülzburgstraße 215<br />
-                    50937 Köln<br />
-                    <span class="text-sm">(bitte bei Querwaldein e.V. klingeln)</span>
+                    {siteData.address_street}<br />
+                    {siteData.address_city}<br />
+                    <span class="text-sm">{siteData.address_note}</span>
                   </address>
                 </div>
               </div>

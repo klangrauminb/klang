@@ -1,0 +1,11 @@
+{
+  "brand_name": "KLANGRAUM IN BALANCE",
+  "logo": "/logo2.png",
+  "logo_alt": "Klangraum in Balance Logo",
+  "items": [
+    { "href": "/", "label": "Startseite", "ariaLabel": "Zur Startseite" },
+    { "href": "/behandlung-kosten/", "label": "Behandlung & Kosten", "ariaLabel": "Zu Behandlung & Kosten" },
+    { "href": "/ueber-mich/", "label": "Über mich", "ariaLabel": "Über Eva Brandt" },
+    { "href": "/kontakt/", "label": "Kontakt", "ariaLabel": "Zur Kontaktseite" }
+  ]
+}

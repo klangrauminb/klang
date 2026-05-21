@@ -2,11 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import behandlungData from '../data/behandlung.json';
 ---
 
 <Layout 
-  title="Behandlung & Kosten | Klangraum in Balance"
-  description="Erfahre mehr über die Klangmassage nach Peter Hess®, wie sie wirkt, wie sie abläuft und was sie kostet."
+  title={`${behandlungData.page_title} | Klangraum in Balance`}
+  description={behandlungData.how_it_works_text.slice(0, 160) + "..."}
 >
   <Header />
   
@@ -15,7 +16,7 @@ import Footer from '../components/Footer.astro';
     <section class="pt-16 md:pt-24 pb-8">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 class="text-xl md:text-2xl text-klang-green">
-          Behandlung & Kosten
+          {behandlungData.page_title}
         </h1>
       </div>
     </section>
@@ -33,11 +34,11 @@ import Footer from '../components/Footer.astro';
               id="how-it-works-heading"
               class="section-heading text-lg md:text-xl text-klang-green"
             >
-              So wirkt die Klangmassage
+              {behandlungData.how_it_works_heading}
             </h2>
             <div class="prose prose-lg max-w-none">
               <p class="text-klang-green/90 text-lg md:text-xl leading-relaxed">
-                Während die sanften Klänge der Klangschalen über das Gehör wahrgenommen werden und sich beruhigend auf unser Nervensystem auswirken, breiten sich feine Schwingungen im Körper aus – vergleichbar mit konzentrischen Wellen, die entstehen, wenn ein Stein in einen See fällt. Dieser Vergleich liegt nahe, da unser Körper zu etwa 70-80 % aus Wasser besteht. Ähnlich wie sich die Wellen im See ausbreiten, werden auch die Vibrationen der Klangschalen über das Wasser im Körper weitergetragen. Diese Schwingungen durchdringen den Körper auf tiefen Ebenen, sprechen ihn ganzheitlich an und können ihn dabei unterstützen, in einen Zustand tiefer Entspannung und natürlicher Selbstregulation zu gelangen.
+                {behandlungData.how_it_works_text}
               </p>
             </div>
           </div>
@@ -45,8 +46,8 @@ import Footer from '../components/Footer.astro';
           <div class="order-1 lg:order-2">
             <div class="relative rounded-2xl overflow-hidden shadow-lg">
               <img 
-                src="/wiesiewirkt.jpeg" 
-                alt="Wellen im Wasser - wie Schwingungen der Klangschalen im Körper" 
+                src={behandlungData.how_it_works_image} 
+                alt={behandlungData.how_it_works_image_alt} 
                 class="w-full h-auto object-cover aspect-video"
                 width="917"
                 height="620"
@@ -69,8 +70,8 @@ import Footer from '../components/Footer.astro';
           <div class="order-1 lg:order-1">
             <div class="relative rounded-2xl overflow-hidden shadow-xl">
               <img 
-                src="/ablauf.jpg" 
-                alt="Klangmassage Behandlung mit Klangschalen" 
+                src={behandlungData.procedure_image} 
+                alt={behandlungData.procedure_image_alt} 
                 class="w-full h-auto object-cover"
                 width="1264"
                 height="848"
@@ -85,11 +86,11 @@ import Footer from '../components/Footer.astro';
               id="procedure-heading"
               class="section-heading text-lg md:text-xl text-klang-green"
             >
-              Ablauf der Klangmassage
+              {behandlungData.procedure_heading}
             </h2>
             <div class="prose prose-lg max-w-none">
               <p class="text-klang-green/90 text-lg md:text-xl leading-relaxed">
-                Nach einem kurzen Vorgespräch genießt du eine Behandlung in Bauch- und in Rückenlage. In beiden Lagen werden eine oder mehrere speziell angefertigte Klangschalen auf deinem bekleideten Körper und in seiner Nähe platziert und sanft angeschlägelt. Du wirst dabei nicht angefasst. Sollte sich eine der Körperlagen für dich nicht angenehm anfühlen oder nicht möglich sein, steht einer wohltuenden Klangmassage dennoch nichts im Wege. Die Anwendung kann auch in nur einer Position durchgeführt werden, ganz individuell auf deine Bedürfnisse abgestimmt.
+                {behandlungData.procedure_text}
               </p>
             </div>
           </div>
@@ -107,11 +108,11 @@ import Footer from '../components/Footer.astro';
           id="pricing-heading"
           class="section-heading text-lg md:text-xl text-klang-green text-center"
         >
-          Behandlungsdauer & Kosten
+          {behandlungData.pricing_heading}
         </h2>
         <div class="prose prose-lg max-w-none">
           <p class="text-klang-green/90 text-lg md:text-xl leading-relaxed">
-            Eine Klangmassage dauert etwa 60 Minuten, inklusive eines kurzen Vor- und Nachgesprächs. Der Ausgleich für diese Zeit der Entspannung und Regeneration beträgt 69 Euro.
+            {behandlungData.pricing_text}
           </p>
         </div>
       </div>
@@ -127,17 +128,17 @@ import Footer from '../components/Footer.astro';
           id="cta-heading"
           class="text-lg md:text-xl mb-6 text-klang-cream"
         >
-          Hast du Fragen?
+          {behandlungData.cta_heading}
         </h2>
         <p class="text-xl md:text-2xl text-klang-cream/90 mb-8 max-w-2xl mx-auto">
-          Ich berate dich gerne persönlich und freue mich auf deine Nachricht.
+          {behandlungData.cta_text}
         </p>
         <a 
           href="/kontakt/"
           class="inline-flex items-center justify-center px-8 py-4 bg-klang-cream text-[#5a6b5c] font-semibold rounded-lg hover:bg-klang-cream/90 transition-colors focus:outline-none focus:ring-2 focus:ring-klang-cream/50"
-          aria-label="Kontakt aufnehmen"
+          aria-label={behandlungData.cta_button}
         >
-          Kontakt aufnehmen
+          {behandlungData.cta_button}
         </a>
       </div>
     </section>

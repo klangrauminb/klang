@@ -1,4 +1,3 @@
-<!-- From: /Users/albinsalihu/Downloads/klang-main/AGENTS.md -->
 # Klangraum in Balance - Project Guide
 
 ## Project Overview

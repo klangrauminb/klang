@@ -1,10 +1,5 @@
 ---
-const navItems = [
-  { href: '/', label: 'Startseite', ariaLabel: 'Zur Startseite' },
-  { href: '/behandlung-kosten/', label: 'Behandlung & Kosten', ariaLabel: 'Zu Behandlung & Kosten' },
-  { href: '/ueber-mich/', label: 'Über mich', ariaLabel: 'Über Eva Brandt' },
-  { href: '/kontakt/', label: 'Kontakt', ariaLabel: 'Zur Kontaktseite' },
-];
+import navData from '../data/navigation.json';
 
 const currentPath = Astro.url.pathname;
 ---
@@ -16,24 +11,24 @@ const currentPath = Astro.url.pathname;
       <a 
         href="/" 
         class="flex items-center gap-2 sm:gap-4 md:gap-6 hover:opacity-80 transition-opacity min-w-0"
-        aria-label="Klangraum in Balance - Zur Startseite"
+        aria-label={`${navData.brand_name} - Zur Startseite`}
       >
         <img 
-          src="/logo2.png" 
-          alt="Klangraum in Balance Logo" 
+          src={navData.logo} 
+          alt={navData.logo_alt} 
           class="h-10 sm:h-12 md:h-16 w-auto rounded-lg shrink-0"
           width="512"
           height="512"
         />
         <span class="text-xl md:text-xl lg:text-4xl font-normal text-klang-cream tracking-wide uppercase whitespace-normal sm:whitespace-nowrap leading-tight">
-          KLANGRAUM IN BALANCE
+          {navData.brand_name}
         </span>
       </a>
       
       <!-- Desktop Navigation -->
       <nav class="hidden md:block" aria-label="Hauptnavigation">
         <ul class="flex items-center space-x-6">
-          {navItems.map((item) => {
+          {navData.items.map((item) => {
             const isActive = currentPath === item.href || currentPath === item.href.slice(0, -1);
             return (
               <li>
@@ -79,7 +74,7 @@ const currentPath = Astro.url.pathname;
   >
     <nav class="max-w-6xl mx-auto px-4 py-4">
       <ul class="space-y-3">
-        {navItems.map((item) => {
+        {navData.items.map((item) => {
           const isActive = currentPath === item.href || currentPath === item.href.slice(0, -1);
           return (
             <li>

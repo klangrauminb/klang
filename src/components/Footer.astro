@@ -1,10 +1,9 @@
 ---
-const currentYear = new Date().getFullYear();
+import footerData from '../data/footer.json';
+import siteData from '../data/site.json';
 
-const footerLinks = [
-  { href: '/impressum/', label: 'Impressum', ariaLabel: 'Zum Impressum' },
-  { href: '/datenschutz/', label: 'Datenschutz', ariaLabel: 'Zur Datenschutzerklärung' },
-];
+const currentYear = new Date().getFullYear();
+const copyrightText = footerData.copyright_text.replace('{year}', String(currentYear));
 ---
 
 <footer class="bg-[#9dae9f] text-klang-cream mt-auto">
@@ -15,55 +14,50 @@ const footerLinks = [
         <a 
           href="/" 
           class="hover:opacity-80 transition-opacity inline-block"
-          aria-label="Klangraum in Balance - Zur Startseite"
+          aria-label={`${siteData.site_name} - Zur Startseite`}
         >
           <img 
-            src="/logo2.png" 
-            alt="Klangraum in Balance Logo" 
+            src={footerData.logo || '/logo2.png'} 
+            alt={footerData.logo_alt || siteData.site_name} 
             class="h-12 md:h-14 w-auto rounded-lg"
           />
         </a>
-        <p class="text-klang-cream/80 text-sm leading-relaxed">
-          Klangmassage in Köln<br />
-          Eva Brandt<br />
-          zertifizierte Peter Hess®<br />
-          Klangmassagepraktikerin
-        </p>
+        <p class="text-klang-cream/80 text-sm leading-relaxed" set:html={footerData.brand_text} />
       </div>
       
       <!-- Contact -->
       <div class="space-y-4">
-        <h3 class="text-lg font-bold">Kontakt</h3>
+        <h3 class="text-lg font-bold">{footerData.contact_heading}</h3>
         <address class="not-italic text-klang-cream/80 text-sm leading-relaxed space-y-2">
           <p>Eva Brandt</p>
           <p>
             <a 
-              href="tel:+491772522505" 
+              href={`tel:${siteData.phone}`} 
               class="hover:text-klang-cream transition-colors underline underline-offset-2"
-              aria-label="Telefonnummer anrufen: 0177-2522505"
+              aria-label={`Telefonnummer anrufen: ${siteData.phone_display}`}
             >
-              0177-2522505
+              {siteData.phone_display}
             </a>
           </p>
           <p>
             <a 
-              href="mailto:kontakt@klangraum-balance.de" 
+              href={`mailto:${siteData.email}`} 
               class="hover:text-klang-cream transition-colors underline underline-offset-2"
               aria-label="E-Mail senden"
             >
-              kontakt@klangraum-balance.de
+              {siteData.email}
             </a>
           </p>
-          <p>Sülzburgstraße 215<br />50937 Köln</p>
+          <p set:html={`${siteData.address_street}<br />${siteData.address_city}`} />
         </address>
       </div>
       
       <!-- Links -->
       <div class="space-y-4">
-        <h3 class="text-lg font-bold">Rechtliches</h3>
+        <h3 class="text-lg font-bold">{footerData.legal_heading}</h3>
         <nav aria-label="Footer Navigation">
           <ul class="space-y-2">
-            {footerLinks.map((link) => (
+            {footerData.footer_links.map((link) => (
               <li>
                 <a 
                   href={link.href}
@@ -83,10 +77,10 @@ const footerLinks = [
     <div class="border-t border-klang-cream/20 mt-8 pt-8">
       <div class="flex flex-col md:flex-row items-center justify-between gap-4">
         <p class="text-klang-cream/60 text-xs">
-          © {currentYear} Klangraum in Balance. Alle Rechte vorbehalten.
+          {copyrightText}
         </p>
         <p class="text-klang-cream/60 text-xs">
-          Mit Liebe und Achtsamkeit gestaltet.
+          {footerData.credits_text}
         </p>
       </div>
     </div>

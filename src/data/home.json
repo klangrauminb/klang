@@ -1,0 +1,21 @@
+{
+  "hero_image": "/hero.gif",
+  "hero_alt": "Sonnenuntergang am Strand mit sanften Wellen",
+  "hero_scroll_text": "Die Kraft der Klangmassage",
+  "slogan": "Zur Ruhe kommen. Loslassen. Auftanken.",
+  "power_image": "/kraftderklangmassage.jpeg",
+  "power_alt": "Drei goldene Klangschalen vor blauem Wasser",
+  "power_heading": "Brauchst du mal wieder eine Pause vom Alltag? Einen Moment zum Durchatmen, um neue Energie zu schöpfen und wieder bei dir selbst anzukommen?",
+  "power_text": "Gerade dann, wenn der Kopf nicht mehr zur Ruhe kommt und alles zu viel wird, ist es wichtig, innezuhalten und sich bewusst eine Auszeit zu nehmen. Die von Peter Hess entwickelte Klangmassage bietet dir dafür einen geschützten Raum, einen Ort zum Entspannen und Abschalten. Hier darfst du loslassen, während sich dein Nervensystem beruhigt und die körpereigene Regeneration angeregt wird. Auf diese Weise kann Stress abgebaut, deine innere Balance stabilisiert und dein allgemeines Wohlbefinden gesteigert werden. In dieser tiefen Entspannung können sich auch körperliche und mentale Spannungen sanft lösen. Zudem kann die Klangmassage eine feinere Körperwahrnehmung unterstützen. Sie ist für Menschen jeden Alters geeignet und kann genau die Auszeit sein, die du dir gerade wünschst.",
+  "benefits": [
+    "Stress und Erschöpfung",
+    "innerer Unruhe und kreisenden Gedanken",
+    "Schlafproblemen",
+    "körperlichen und emotionalen Spannungen",
+    "mangelnder Körperwahrnehmung",
+    "dem Bedürfnis, wieder mehr bei sich selbst anzukommen."
+  ],
+  "cta_heading": "Sehnst du dich nach einem Moment der Ruhe und Entspannung?",
+  "cta_text": "Schenke dir selbst eine Auszeit und erlebe die heilsame Wirkung der Klangmassage oder überrasche einen lieben Menschen mit einem Gutschein.",
+  "cta_button": "Jetzt Termin vereinbaren"
+}

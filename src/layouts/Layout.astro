@@ -1,4 +1,6 @@
 ---
+import siteData from '../data/site.json';
+
 export interface Props {
   title: string;
   description?: string;
@@ -6,10 +8,12 @@ export interface Props {
 
 const { 
   title, 
-  description = "Klangraum in Balance - Klangmassage in Köln. Zur Ruhe kommen, loslassen, auftanken mit Eva Brandt, zertifizierte Peter Hess® Klangmassagepraktikerin." 
+  description = siteData.meta_description
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const openingDays = siteData.opening_hours_days.split(',').map(d => d.trim());
 ---
 
 <!DOCTYPE html>
@@ -26,7 +30,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   
   <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Klangraum in Balance" />
+  <meta property="og:site_name" content={siteData.site_name} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonicalURL} />
@@ -36,13 +40,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content="https://klangraum-in-balance.de/kraftderklangmassage.jpeg" />
+  <meta name="twitter:image" content={`https://klangraum-in-balance.de${siteData.og_image}`} />
   
   <!-- Open Graph Image -->
-  <meta property="og:image" content="https://klangraum-in-balance.de/kraftderklangmassage.jpeg" />
+  <meta property="og:image" content={`https://klangraum-in-balance.de${siteData.og_image}`} />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Drei goldene Klangschalen vor blauem Wasser - Klangraum in Balance" />
+  <meta property="og:image:alt" content={siteData.og_image_alt} />
   <meta property="og:image:type" content="image/jpeg" />
   
   <!-- Local Fonts - Mulish (GDPR compliant, no external requests) -->
@@ -58,20 +62,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <meta name="apple-mobile-web-app-title" content="Klangraum" />
   
   <!-- Schema.org Structured Data -->
-  <script type="application/ld+json">
-  {
+  <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Klangraum in Balance",
-    "description": "Klangmassage in Köln mit Eva Brandt, zertifizierte Peter Hess® Klangmassagepraktikerin",
+    "name": siteData.site_name,
+    "description": siteData.meta_description,
     "url": "https://klangraum-in-balance.de",
-    "telephone": "+491772522505",
-    "email": "kontakt@klangraum-balance.de",
+    "telephone": siteData.phone,
+    "email": siteData.email,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Sülzburgstraße 215",
+      "streetAddress": siteData.address_street,
       "addressLocality": "Köln",
-      "postalCode": "50937",
+      "postalCode": siteData.address_city.split(' ')[0],
       "addressCountry": "DE"
     },
     "geo": {
@@ -79,16 +82,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       "latitude": "50.9375",
       "longitude": "6.9603"
     },
-    "priceRange": "€€",
+    "priceRange": siteData.schema_price_range,
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Mo", "Di", "Mi", "Do", "Fr"],
-      "opens": "09:00",
-      "closes": "18:00"
+      "dayOfWeek": openingDays,
+      "opens": siteData.opening_hours_open,
+      "closes": siteData.opening_hours_close
     },
     "sameAs": []
-  }
-  </script>
+  })} />
   
   <title>{title}</title>
   
@@ -162,8 +164,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-klang-sage text-klang-cream p-4 md:p-6 transform translate-y-full transition-transform duration-300 ease-in-out z-50 shadow-2xl" role="dialog" aria-label="Cookie-Einwilligung" aria-live="polite">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="text-sm md:text-base">
-        <p class="font-semibold mb-1">Datenschutzeinstellungen</p>
-        <p class="text-klang-cream/90">Wir verwenden ausschließlich essenzielle Cookies für die Funktionalität dieser Website. Keine Tracking-Tools, keine Werbung.</p>
+        <p class="font-semibold mb-1">{siteData.cookie_banner_title}</p>
+        <p class="text-klang-cream/90">{siteData.cookie_banner_text}</p>
       </div>
       <div class="flex flex-wrap gap-2 md:gap-3 shrink-0">
         <button 
@@ -172,7 +174,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           class="px-4 py-2 text-sm border border-klang-cream/50 rounded hover:bg-klang-cream/10 transition-colors focus:outline-none focus:ring-2 focus:ring-klang-cream/50"
           aria-label="Nur essenzielle Cookies akzeptieren"
         >
-          Nur Essentiell
+          {siteData.cookie_button_essential}
         </button>
         <button 
           type="button"
@@ -180,7 +182,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           class="px-4 py-2 text-sm border border-klang-cream/50 rounded hover:bg-klang-cream/10 transition-colors focus:outline-none focus:ring-2 focus:ring-klang-cream/50"
           aria-label="Cookies ablehnen"
         >
-          Ablehnen
+          {siteData.cookie_button_decline}
         </button>
         <button 
           type="button"
@@ -188,7 +190,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           class="px-4 py-2 text-sm bg-klang-cream text-klang-sage font-semibold rounded hover:bg-klang-cream/90 transition-colors focus:outline-none focus:ring-2 focus:ring-klang-cream/50"
           aria-label="Alle Cookies akzeptieren"
         >
-          Zustimmen
+          {siteData.cookie_button_accept}
         </button>
       </div>
     </div>

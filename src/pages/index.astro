@@ -2,32 +2,24 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-
-const benefits = [
-  'Stress und Erschöpfung',
-  'innerer Unruhe und kreisenden Gedanken',
-  'Schlafproblemen',
-  'körperlichen und emotionalen Spannungen',
-  'mangelnder Körperwahrnehmung',
-  'dem Bedürfnis, wieder mehr bei sich selbst anzukommen.',
-];
+import homeData from '../data/home.json';
 ---
 
 <Layout 
-  title="Klangraum in Balance | Klangmassage in Köln"
-  description="Zur Ruhe kommen, loslassen, auftanken. Klangmassage in Köln mit Eva Brandt, zertifizierter Peter Hess® Klangmassagepraktikerin."
+  title={`${homeData.slogan} | Klangraum in Balance`}
+  description={homeData.power_text.slice(0, 160) + "..."}
 >
   <Header />
   
   <main id="main-content">
-    <!-- Hero Section - Reduced height to show content teaser -->
+    <!-- Hero Section -->
     <section 
       class="relative w-full h-[70vh]"
       aria-label="Hero"
     >
       <img 
-        src="/hero.gif" 
-        alt="Sonnenuntergang am Strand mit sanften Wellen" 
+        src={homeData.hero_image} 
+        alt={homeData.hero_alt} 
         class="w-full h-full object-cover"
         width="1920"
         height="1080"
@@ -40,7 +32,7 @@ const benefits = [
         class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white hover:text-white/90 transition-colors cursor-pointer group"
         aria-label="Zur Klangmassage Erklärung scrollen"
       >
-        <span class="text-xs md:text-sm font-normal tracking-wide drop-shadow-lg bg-black/20 px-3 py-1.5 rounded-full backdrop-blur-sm whitespace-nowrap">Die Kraft der Klangmassage</span>
+        <span class="text-xs md:text-sm font-normal tracking-wide drop-shadow-lg bg-black/20 px-3 py-1.5 rounded-full backdrop-blur-sm whitespace-nowrap">{homeData.hero_scroll_text}</span>
         <svg 
           class="w-5 h-5 animate-bounce drop-shadow-lg" 
           fill="none" 
@@ -68,7 +60,7 @@ const benefits = [
           id="slogan-heading"
           class="text-lg md:text-xl lg:text-2xl text-klang-cream font-normal"
         >
-          Zur Ruhe kommen. Loslassen. Auftanken.
+          {homeData.slogan}
         </h1>
       </div>
     </section>
@@ -84,8 +76,8 @@ const benefits = [
           <div class="order-1 lg:order-1 lg:mt-[9rem]">
             <div class="relative rounded-2xl overflow-hidden shadow-xl">
               <img 
-                src="/kraftderklangmassage.jpeg" 
-                alt="Drei goldene Klangschalen vor blauem Wasser" 
+                src={homeData.power_image} 
+                alt={homeData.power_alt} 
                 class="w-full h-auto object-cover"
                 width="1920"
                 height="1280"
@@ -99,10 +91,10 @@ const benefits = [
               id="power-heading"
               class="text-xl md:text-2xl text-klang-green font-bold mb-4 !border-0 !pb-0 !normal-case !tracking-normal text-justify"
             >
-              Brauchst du mal wieder eine Pause vom Alltag? Einen Moment zum Durchatmen, um neue Energie zu schöpfen und wieder bei dir selbst anzukommen?
+              {homeData.power_heading}
             </h2>
             <p class="text-klang-green/90 text-lg md:text-xl leading-relaxed">
-              Gerade dann, wenn der Kopf nicht mehr zur Ruhe kommt und alles zu viel wird, ist es wichtig, innezuhalten und sich bewusst eine Auszeit zu nehmen. Die von Peter Hess entwickelte Klangmassage bietet dir dafür einen geschützten Raum, einen Ort zum Entspannen und Abschalten. Hier darfst du loslassen, während sich dein Nervensystem beruhigt und die körpereigene Regeneration angeregt wird. Auf diese Weise kann Stress abgebaut, deine innere Balance stabilisiert und dein allgemeines Wohlbefinden gesteigert werden. In dieser tiefen Entspannung können sich auch körperliche und mentale Spannungen sanft lösen. Zudem kann die Klangmassage eine feinere Körperwahrnehmung unterstützen. Sie ist für Menschen jeden Alters geeignet und kann genau die Auszeit sein, die du dir gerade wünschst.
+              {homeData.power_text}
             </p>
           </div>
         </div>
@@ -125,7 +117,7 @@ const benefits = [
           class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6"
           role="list"
         >
-          {benefits.map((benefit, index) => (
+          {homeData.benefits.map((benefit, index) => (
             <li class="flex items-start space-x-3">
               <span class="flex-shrink-0 w-6 h-6 rounded-full bg-klang-sage/10 flex items-center justify-center mt-0.5">
                 <svg 
@@ -154,17 +146,17 @@ const benefits = [
           id="cta-heading"
           class="text-lg md:text-xl mb-6 text-klang-cream"
         >
-          Sehnst du dich nach einem Moment der Ruhe und Entspannung?
+          {homeData.cta_heading}
         </h2>
         <p class="text-xl md:text-2xl text-klang-cream/90 mb-8 max-w-2xl mx-auto">
-          Schenke dir selbst eine Auszeit und erlebe die heilsame Wirkung der Klangmassage oder überrasche einen lieben Menschen mit einem Gutschein.
+          {homeData.cta_text}
         </p>
         <a 
           href="/kontakt/"
           class="inline-flex items-center justify-center px-8 py-4 bg-klang-cream text-[#5a6b5c] font-semibold rounded-lg hover:bg-klang-cream/90 transition-colors focus:outline-none focus:ring-2 focus:ring-klang-cream/50"
-          aria-label="Jetzt Termin vereinbaren"
+          aria-label={homeData.cta_button}
         >
-          Jetzt Termin vereinbaren
+          {homeData.cta_button}
         </a>
       </div>
     </section>

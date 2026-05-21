@@ -1,0 +1,11 @@
+{
+  "brand_text": "Klangmassage in Köln<br />Eva Brandt<br />zertifizierte Peter Hess®<br />Klangmassagepraktikerin",
+  "contact_heading": "Kontakt",
+  "legal_heading": "Rechtliches",
+  "footer_links": [
+    { "href": "/impressum/", "label": "Impressum", "ariaLabel": "Zum Impressum" },
+    { "href": "/datenschutz/", "label": "Datenschutz", "ariaLabel": "Zur Datenschutzerklärung" }
+  ],
+  "copyright_text": "© {year} Klangraum in Balance. Alle Rechte vorbehalten.",
+  "credits_text": "Mit Liebe und Achtsamkeit gestaltet."
+}

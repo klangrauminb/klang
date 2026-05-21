@@ -1,0 +1,23 @@
+{
+  "site_name": "Klangraum in Balance",
+  "meta_description": "Klangraum in Balance - Klangmassage in Köln. Zur Ruhe kommen, loslassen, auftanken mit Eva Brandt, zertifizierte Peter Hess® Klangmassagepraktikerin.",
+  "og_image": "/kraftderklangmassage.jpeg",
+  "og_image_alt": "Drei goldene Klangschalen vor blauem Wasser - Klangraum in Balance",
+  "phone": "+491772522505",
+  "phone_display": "0177-2522505",
+  "email": "kontakt@klangraum-balance.de",
+  "address_street": "Sülzburgstraße 215",
+  "address_city": "50937 Köln",
+  "address_note": "(bitte bei Querwaldein e.V. klingeln)",
+  "price": "69 Euro",
+  "duration": "etwa 60 Minuten",
+  "schema_price_range": "€€",
+  "opening_hours_days": "Mo, Di, Mi, Do, Fr",
+  "opening_hours_open": "09:00",
+  "opening_hours_close": "18:00",
+  "cookie_banner_title": "Datenschutzeinstellungen",
+  "cookie_banner_text": "Wir verwenden ausschließlich essenzielle Cookies für die Funktionalität dieser Website. Keine Tracking-Tools, keine Werbung.",
+  "cookie_button_accept": "Zustimmen",
+  "cookie_button_essential": "Nur Essentiell",
+  "cookie_button_decline": "Ablehnen"
+}
